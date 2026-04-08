@@ -83,6 +83,8 @@ This aligns with a practical argument: respiratory sensors (chest belt, nasal ca
 | Single EEG | EEG Fpz only | 0.820 | 0.67 |
 | EEG + Resp | EEG Fpz + Resp | 0.810 | 0.72 |
 
+<img width="1289" height="590" alt="18   ab" src="https://github.com/user-attachments/assets/1c89fbe0-38ea-45aa-8669-a6fe7477df68" />
+
 **EEG + EOG achieves accuracy within 1.5% of the 4-channel full model**, with the highest REM F1 among all reduced configurations.
 
 ### LOSO: Subject-Independent Validation (7 subjects)
@@ -92,6 +94,8 @@ This aligns with a practical argument: respiratory sensors (chest belt, nasal ca
 | Full (4-channel) | 0.705 ± 0.068 | 0.11 |
 | **EEG + EOG** ⭐ | **0.716 ± 0.068** | **0.34** |
 | Dual EEG | 0.717 ± 0.083 | 0.09 |
+
+<img width="1490" height="495" alt="18  ablation eng" src="https://github.com/user-attachments/assets/ff44267b-d7c3-45d2-b1e8-6647da3b3a55" />
 
 **EEG + EOG outperforms the full 4-channel model on REM F1 even under LOSO**, confirming that EOG contributes generalizable cross-subject REM detection — not just within-subject pattern memorization.
 
@@ -105,10 +109,15 @@ This gap is not a failure. It is a deliberate design choice: reporting LOSO alon
 
 | Sleep Stage | Top Contributing Channel | Key Feature |
 |------------|--------------------------|-------------|
-| N3 | EEG Fpz-Cz | fpz_delta (dominant) |
-| REM | EOG | eog_diff_var, eog_rms |
-| W | EEG Fpz-Cz | fpz_alpha |
-| N2 | EEG Fpz-Cz | fpz_sigma |
+| W   | EOG            | eog_diff_var        |
+| N1  | EEG Fpz-Cz     | fpz_delta           |
+| N2  | EEG Fpz-Cz     | fpz_delta           |
+| N3  | EEG Fpz-Cz     | fpz_delta (dominant)|
+| REM | EEG Fpz-Cz     | fpz_delta, fpz_sigma|
+
+<img width="1990" height="631" alt="18  shap eng" src="https://github.com/user-attachments/assets/de035966-c0bf-45b3-ae22-c03b717eec67" />
+
+<img width="1389" height="593" alt="18  rem shap eng" src="https://github.com/user-attachments/assets/98a3bf3f-98f5-4827-833f-c9df24be2ac9" />
 
 EOG contribution to REM prediction: **4× higher than Resp** across all test epochs. Resp ranked last in every sleep stage — quantitatively supporting its exclusion.
 
@@ -139,17 +148,19 @@ The algorithm was initially framed around a sleep eye mask form factor. However,
 ---
 
 ## 7. Repository Structure
+```
 sleep-stage-classification/
 ├── baseline/
 │   └── sleep_ml_baseline.ipynb      # KNN / SVM / RF comparison (7 iterations)
 ├── multimodal/
-│   └── sleep_eyemask_pipeline.ipynb # Full A-3 pipeline
+│   └── sleep_eyemask_pipeline.ipynb # Full pipeline
 ├── figures/
-│   ├── ablation_comparison.png
-│   ├── shap_per_stage.png
-│   └── rem_shap_comparison.png
+│   ├── step5_ablation_comparison.png
+│   ├── step5_loso_result.png
+│   ├── step6_full_shap_per_stage.png
+│   └── step6_rem_shap_comparison.png
 └── README.md
-
+```
 ---
 
 ## 8. Setup
