@@ -125,9 +125,9 @@ EOG contribution to REM prediction: **4× higher than Resp** across all test epo
 
 ## 5. Lightweight Wearable Feasibility
 
-EEG Fpz-Cz + EOG achieves equivalent performance to a 4-channel setup at 1.5% accuracy cost. This 2-channel configuration is physically realizable in compact wearable form factors:
-
 The algorithm was initially framed around a sleep eye mask form factor. However, the same 2-channel (EEG Fpz-Cz + EOG) configuration is equally realizable in a forehead patch or other compact wearables, as the feature design is channel-combination-based rather than form-factor-specific.
+
+EEG Fpz-Cz + EOG achieves equivalent performance to a 4-channel setup at 1.5% accuracy cost. This 2-channel configuration is physically realizable in compact wearable form factors:
 
 | Form Factor | Advantages | Limitations |
 |------------|------------|-------------|
